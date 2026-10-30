@@ -1,0 +1,84 @@
+{
+  "name": "@smi-82/nuxt-table-state",
+  "version": "1.0.0",
+  "description": "Headless Nuxt module for list and table screens: page, sort, search and filter state synced to the URL.",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "table",
+    "data-table",
+    "pagination",
+    "filters",
+    "url-state",
+    "composables"
+  ],
+  "author": "smi-82",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SMI-82/nuxt-table-state.git"
+  },
+  "homepage": "https://github.com/SMI-82/nuxt-table-state#readme",
+  "bugs": {
+    "url": "https://github.com/SMI-82/nuxt-table-state/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    },
+    "./runtime/*": "./dist/runtime/*",
+    "./testing/nuxt-imports": "./testing/nuxt-imports.js",
+    "./testing/nuxt-imports.js": "./testing/nuxt-imports.js",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "testing",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "npm run dev:prepare && nuxt dev playground",
+    "dev:build": "nuxt build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
+    "test": "node --test test/*.test.mjs",
+    "prepublishOnly": "npm test"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^4.1.0"
+  },
+  "peerDependencies": {
+    "@vueuse/core": ">=13",
+    "@vueuse/nuxt": ">=13",
+    "vue": ">=3.5"
+  },
+  "peerDependenciesMeta": {
+    "@vueuse/core": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^1.0.3",
+    "@vueuse/core": "^15.0.0",
+    "@vueuse/nuxt": "^15.0.0",
+    "nuxt": "^4.6.3",
+    "vue": "^3.5.44",
+    "vue-router": "^5.4.0"
+  }
+}
