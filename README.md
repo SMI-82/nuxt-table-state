@@ -343,6 +343,19 @@ npm run dev           # playground: a URL-synced demo list
 npm run prepack       # build dist/
 ```
 
+### Releasing
+
+Publishing is done by GitHub Actions (`.github/workflows/publish.yml`) through npm
+trusted publishing, so no npm token is needed. Add a CHANGELOG entry, then:
+
+```sh
+npm version patch     # or minor / major: bumps package.json, commits, tags vX.Y.Z
+git push --follow-tags
+```
+
+The workflow checks that the tag matches `package.json`, runs the tests, builds and
+publishes the package with provenance.
+
 ## Upgrading from a copied module folder
 
 - Delete the old local folder (for example `modules/data-table/`) and install the
