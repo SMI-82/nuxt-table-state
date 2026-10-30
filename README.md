@@ -345,8 +345,9 @@ npm run prepack       # build dist/
 
 ### Releasing
 
-Publishing is done by GitHub Actions (`.github/workflows/publish.yml`) through npm
-trusted publishing, so no npm token is needed. Add a CHANGELOG entry, then:
+Releases are staged by GitHub Actions (`.github/workflows/publish.yml`) through npm
+trusted publishing, so no npm token is needed; a maintainer then approves the staged
+version with 2FA. Add a CHANGELOG entry, then:
 
 ```sh
 npm version patch     # or minor / major: bumps package.json, commits, tags vX.Y.Z
@@ -354,7 +355,8 @@ git push --follow-tags
 ```
 
 The workflow checks that the tag matches `package.json`, runs the tests, builds and
-publishes the package with provenance.
+stages the package. Approve it on npmjs.com (package → Staged Packages) or with
+`npm stage approve <stage-id>`; only then is the version published.
 
 ## Upgrading from a copied module folder
 

@@ -1,5 +1,6 @@
-# Publishes to npm when a version tag (v1.2.3) is pushed.
+# Stages a release on npm when a version tag (v1.2.3) is pushed.
 # Auth is npm trusted publishing (OIDC): no token is stored anywhere.
+# A maintainer then approves it with 2FA (npmjs.com → Staged Packages, or npm stage approve).
 name: Publish
 
 on:
@@ -22,8 +23,8 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      # Trusted publishing needs npm 11.5.1 or newer.
-      - run: npm install -g npm@latest
+      # npm stage needs npm 12.
+      - run: npm install -g npm@12
 
       - name: Check that the tag matches package.json
         run: |
@@ -36,4 +37,4 @@ jobs:
       - run: npm ci
 
       # prepublishOnly runs the tests, prepack builds dist/.
-      - run: npm publish
+      - run: npm stage publish
