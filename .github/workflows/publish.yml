@@ -16,9 +16,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
@@ -35,6 +35,9 @@ jobs:
           fi
 
       - run: npm ci
+
+      # The build extends .nuxt/tsconfig.json, which only this step generates.
+      - run: npm run dev:prepare
 
       # prepublishOnly runs the tests, prepack builds dist/.
       - run: npm stage publish
